@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <record id="view_l10n_latam_identification_type_form" model="ir.ui.view">
+            <field name="name">l10n_latam.identification.type.form</field>
+            <field name="model">l10n_latam.identification.type</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form create="0" edit="0">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="country_id"/>
+                            <field name="l10n_pe_vat_code" attrs="{'invisible': ['|',('l10n_pe_vat_code','=',False),'!',('country_id','=',173)]}"/>
+                            <field name="is_vat"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+	</data>
+</odoo>

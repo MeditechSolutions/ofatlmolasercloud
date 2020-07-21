@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_res_company_extended_form">
+			<field name="name">view_res_company_extended_form.mouse_toponyms</field>
+			<field name="model">res.company</field>
+			<field name="inherit_id" ref="base_address_extended.view_res_company_extended_form"/>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+                <xpath expr="//field[@name='street_name']" position="attributes">
+                    <attribute name="placeholder">Dirección...</attribute>
+                </xpath>
+                <xpath expr="//field[@name='street2']" position="attributes">
+                    <attribute name="placeholder">Referencia...</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state_id']" position="attributes">
+                    <attribute name="placeholder">Departamento...</attribute>
+                    <attribute name="class">o_address_city</attribute>
+                    <attribute name="options">{'no_open': True, 'no_create': True}</attribute>
+                    <attribute name="domain">[('country_id', '=', country_id)]</attribute>
+                </xpath>
+                <xpath expr="//field[@name='zip']" position="attributes">
+                    <attribute name="placeholder">Código postal...</attribute>
+                    <attribute name="class">o_address_street</attribute>
+                </xpath>
+                <xpath expr="//field[@name='country_id']" position="attributes">
+                    <attribute name="placeholder">País...</attribute>
+                    <attribute name="class">o_address_city</attribute>
+                    <attribute name="options">{'no_open': True, 'no_create': True}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='city']" position="before">
+                    <xpath expr="//field[@name='country_id']" position="move"/>
+                    <xpath expr="//field[@name='state_id']" position="move"/>
+                    <field name="city_id" class="o_address_city" placeholder="Provincia..." options="{'no_open': True, 'no_create': True}" domain="[('country_id', '=', country_id),('state_id', '=', state_id)]"/>
+                    <field name="l10n_pe_district" class="o_address_city" placeholder="Distrito..." options="{'no_open': True, 'no_create': True}" domain="[('country_id', '=', country_id),('state_id', '=', state_id),('city_id', '=', city_id)]"/>
+                    <xpath expr="//field[@name='zip']" position="move"/>
+                </xpath>
+                <xpath expr="//field[@name='city']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+			</field>
+		</record>
+    </data>
+</odoo>

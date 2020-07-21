@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sequence_view" model="ir.ui.view">
+            <field name="name">ir.sequence.form.mouse_einvoice_base</field>
+            <field name="model">ir.sequence</field>
+            <field name="inherit_id" ref="l10n_latam_invoice_document.sequence_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='l10n_latam_document_type_id']" position="after">
+                    <field name="l10n_latam_document_type_credit_id" options="{'no_open': True, 'no_create': True}" attrs="{'invisible': [('l10n_latam_document_type_credit_id','=',False)], 'readonly': True}"/>
+                    <field name="l10n_latam_document_type_debit_id" options="{'no_open': True, 'no_create': True}" attrs="{'invisible': [('l10n_latam_document_type_debit_id','=',False)], 'readonly': True}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

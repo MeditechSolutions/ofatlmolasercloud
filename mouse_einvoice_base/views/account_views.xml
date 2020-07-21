@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_account_journal_form">
+            <field name="name">account.journal.form.mouse_einvoice_base</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="l10n_latam_invoice_document.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='l10n_latam_use_documents']" position="after">
+                    <field name="l10n_latam_document_type_id" options="{'no_open': True, 'no_create': True}" attrs="{'invisible': [('l10n_latam_use_documents','=',False)]}"/>
+                    <field name="l10n_latam_document_type_credit_id" options="{'no_open': True, 'no_create': True}" attrs="{'invisible': ['|', '|', ('l10n_latam_use_documents','=',False), ('type','not in',['sale']), ('l10n_latam_document_type_id','!=',%(pe_07)d)]}" domain="[('internal_type','not in',['debit_note','credit_note'])]"/>
+                    <field name="l10n_latam_document_type_debit_id" options="{'no_open': True, 'no_create': True}" attrs="{'invisible': ['|', '|', ('l10n_latam_use_documents','=',False), ('type','not in',['sale']), ('l10n_latam_document_type_id','!=',%(pe_08)d)]}" domain="[('internal_type','not in',['debit_note','credit_note'])]"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

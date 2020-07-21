@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Catálogo 07 - Códigos de Tipo de Afectación del IGV -->
+        <record id="einvoice_07_10" model="einvoice.07"><field name="code">10</field><field name="name">Gravado - Operación Onerosa</field><field name="onerosa" eval="True"/><field name="type">gravado</field></record>
+        <record id="einvoice_07_11" model="einvoice.07"><field name="code">11</field><field name="name">Gravado - Retiro por premio</field><field name="onerosa" eval="False"/><field name="type">gravado</field></record>
+        <record id="einvoice_07_12" model="einvoice.07"><field name="code">12</field><field name="name">Gravado - Retiro por donación</field><field name="onerosa" eval="False"/><field name="type">gravado</field></record>
+        <record id="einvoice_07_13" model="einvoice.07"><field name="code">13</field><field name="name">Gravado - Retiro</field><field name="onerosa" eval="False"/><field name="type">gravado</field></record>
+        <record id="einvoice_07_14" model="einvoice.07"><field name="code">14</field><field name="name">Gravado - Retiro por publicidad</field><field name="onerosa" eval="False"/><field name="type">gravado</field></record>
+        <record id="einvoice_07_15" model="einvoice.07"><field name="code">15</field><field name="name">Gravado - Bonificaciones</field><field name="onerosa" eval="False"/><field name="type">gravado</field></record>
+        <record id="einvoice_07_16" model="einvoice.07"><field name="code">16</field><field name="name">Gravado - Retiro por entrega a trabajadores</field><field name="onerosa" eval="False"/><field name="type">gravado</field></record>
+        <record id="einvoice_07_17" model="einvoice.07"><field name="code">17</field><field name="name">Gravado - IVAP</field><field name="onerosa" eval="False"/><field name="type">gravado</field></record>
+        <record id="einvoice_07_20" model="einvoice.07"><field name="code">20</field><field name="name">Exonerado - Operación Onerosa</field><field name="onerosa" eval="True"/><field name="type">exonerado</field></record>
+        <record id="einvoice_07_21" model="einvoice.07"><field name="code">21</field><field name="name">Exonerado - Transferencia Gratuita</field><field name="onerosa" eval="False"/><field name="type">exonerado</field></record>
+        <record id="einvoice_07_30" model="einvoice.07"><field name="code">30</field><field name="name">Inafecto - Operación Onerosa</field><field name="onerosa" eval="True"/><field name="type">inafecto</field></record>
+        <record id="einvoice_07_31" model="einvoice.07"><field name="code">31</field><field name="name">Inafecto - Retiro por Bonificación</field><field name="onerosa" eval="False"/><field name="type">inafecto</field></record>
+        <record id="einvoice_07_32" model="einvoice.07"><field name="code">32</field><field name="name">Inafecto - Retiro</field><field name="onerosa" eval="False"/><field name="type">inafecto</field></record>
+        <record id="einvoice_07_33" model="einvoice.07"><field name="code">33</field><field name="name">Inafecto - Retiro por Muestras Médicas</field><field name="onerosa" eval="False"/><field name="type">inafecto</field></record>
+        <record id="einvoice_07_34" model="einvoice.07"><field name="code">34</field><field name="name">Inafecto - Retiro por Convenio Colectivo</field><field name="onerosa" eval="False"/><field name="type">inafecto</field></record>
+        <record id="einvoice_07_35" model="einvoice.07"><field name="code">35</field><field name="name">Inafecto - Retiro por premio</field><field name="onerosa" eval="False"/><field name="type">inafecto</field></record>
+        <record id="einvoice_07_36" model="einvoice.07"><field name="code">36</field><field name="name">Inafecto - Retiro por publicidad</field><field name="onerosa" eval="False"/><field name="type">inafecto</field></record>
+        <record id="einvoice_07_37" model="einvoice.07"><field name="code">37</field><field name="name">Inafecto - Transferencia gratuita</field><field name="onerosa" eval="False"/><field name="type">inafecto</field></record>
+        <record id="einvoice_07_40" model="einvoice.07"><field name="code">40</field><field name="name">Exportación</field><field name="onerosa" eval="False"/><field name="type">exonerado</field></record>
+        
+        <!-- Catálogo 09 - Códigos de Tipo de Nota de Credito Electronica -->
+        <record id="einvoice_09_01" model="einvoice.09"><field name="code">01</field><field name="name">Anulación de la operación</field></record>
+        <record id="einvoice_09_02" model="einvoice.09"><field name="code">02</field><field name="name">Anulación por error en el RUC</field></record>
+        <record id="einvoice_09_03" model="einvoice.09"><field name="code">03</field><field name="name">Corrección por error en la descripción</field></record>
+        <record id="einvoice_09_04" model="einvoice.09"><field name="code">04</field><field name="name">Descuento global</field></record>
+        <record id="einvoice_09_05" model="einvoice.09"><field name="code">05</field><field name="name">Descuento por ítem</field></record>
+        <record id="einvoice_09_06" model="einvoice.09"><field name="code">06</field><field name="name">Devolución total</field></record>
+        <record id="einvoice_09_07" model="einvoice.09"><field name="code">07</field><field name="name">Devolución por ítem</field></record>
+        <record id="einvoice_09_08" model="einvoice.09"><field name="code">08</field><field name="name">Bonificación</field></record>
+        <record id="einvoice_09_09" model="einvoice.09"><field name="code">09</field><field name="name">Disminución en el valor</field></record>
+        <record id="einvoice_09_10" model="einvoice.09"><field name="code">10</field><field name="name">Otros conceptos</field></record>
+        <record id="einvoice_09_11" model="einvoice.09"><field name="code">11</field><field name="name">Ajustes de operaciones de exportación</field></record>
+        <record id="einvoice_09_12" model="einvoice.09"><field name="code">12</field><field name="name">Ajustes afectos al IVAP</field></record>
+        
+        <!-- Catálogo 10 - Códigos de Tipo de Nota de Debito Electronica -->
+        <record id="einvoice_10_01" model="einvoice.10"><field name="code">01</field><field name="name">Intereses por mora</field></record>
+        <record id="einvoice_10_02" model="einvoice.10"><field name="code">02</field><field name="name">Aumento en el valor</field></record>
+        <record id="einvoice_10_03" model="einvoice.10"><field name="code">03</field><field name="name">Penalidades/ otros conceptos</field></record>
+        <record id="einvoice_10_11" model="einvoice.10"><field name="code">11</field><field name="name">Ajustes de operaciones de exportación</field></record>
+        <record id="einvoice_10_12" model="einvoice.10"><field name="code">12</field><field name="name">Ajustes afectos al IVAP</field></record>
+        
+        <!-- Catálogo 51 - Código de tipo de operación -->
+        <record id="einvoice_51_0101" model="einvoice.51"><field name="code">0101</field><field name="name">Venta Interna</field></record>
+        <record id="einvoice_51_0102" model="einvoice.51"><field name="code">0102</field><field name="name">Venta Interna - Anticipos</field></record>
+        <record id="einvoice_51_0103" model="einvoice.51"><field name="code">0103</field><field name="name">Venta Interna - Itinerante</field></record>
+        <record id="einvoice_51_0110" model="einvoice.51"><field name="code">0110</field><field name="name">Venta Interna - Sustenta Traslado de Mercadería - Remitente</field></record>
+        <record id="einvoice_51_0111" model="einvoice.51"><field name="code">0111</field><field name="name">Venta Interna - Sustenta Traslado de Mercadería - Transportista</field></record>
+        <record id="einvoice_51_0112" model="einvoice.51"><field name="code">0112</field><field name="name">Venta Interna - Sustenta Gastos Deducibles Persona Natural</field></record>
+        <record id="einvoice_51_0113" model="einvoice.51"><field name="code">0113</field><field name="name">Venta Interna - NRUS</field></record>
+        <record id="einvoice_51_0120" model="einvoice.51"><field name="code">0120</field><field name="name">Venta Interna - Sujeta al IVAP</field></record>
+        <record id="einvoice_51_0121" model="einvoice.51"><field name="code">0121</field><field name="name">Venta Interna - Sujeta al FISE</field></record>
+        <record id="einvoice_51_0122" model="einvoice.51"><field name="code">0122</field><field name="name">Venta Interna - Sujeta a otros impuestos</field></record>
+        <record id="einvoice_51_0130" model="einvoice.51"><field name="code">0130</field><field name="name">Venta Interna - Realizadas al Estado</field></record>
+        <record id="einvoice_51_0200" model="einvoice.51"><field name="code">0200</field><field name="name">Exportación de Bienes</field></record>
+        <record id="einvoice_51_0201" model="einvoice.51"><field name="code">0201</field><field name="name">Exportación de Servicios - Prestación servicios realizados íntegramente en el país</field></record>
+        <record id="einvoice_51_0202" model="einvoice.51"><field name="code">0202</field><field name="name">Exportación de Servicios - Prestación de servicios de hospedaje No Domiciliado</field></record>
+        <record id="einvoice_51_0203" model="einvoice.51"><field name="code">0203</field><field name="name">Exportación de Servicios - Transporte de navieras</field></record>
+        <record id="einvoice_51_0204" model="einvoice.51"><field name="code">0204</field><field name="name">Exportación de Servicios - Servicios a naves y aeronaves de bandera extranjera</field></record>
+        <record id="einvoice_51_0205" model="einvoice.51"><field name="code">0205</field><field name="name">Exportación de Servicios - Servicios que conformen un Paquete Turístico</field></record>
+        <record id="einvoice_51_0206" model="einvoice.51"><field name="code">0206</field><field name="name">Exportación de Servicios - Servicios complementarios al transporte de carga</field></record>
+        <record id="einvoice_51_0207" model="einvoice.51"><field name="code">0207</field><field name="name">Exportación de Servicios - Suministro de energía eléctrica a favor de sujetos domiciliados en ZED</field></record>
+        <record id="einvoice_51_0208" model="einvoice.51"><field name="code">0208</field><field name="name">Exportación de Servicios - Prestación servicios realizados parcialmente en el extranjero</field></record>
+        <record id="einvoice_51_0301" model="einvoice.51"><field name="code">0301</field><field name="name">Operaciones con Carta de porte aéreo (emitidas en el ámbito nacional)</field></record>
+        <record id="einvoice_51_0302" model="einvoice.51"><field name="code">0302</field><field name="name">Operaciones de Transporte ferroviario de pasajeros</field></record>
+        <record id="einvoice_51_0303" model="einvoice.51"><field name="code">0303</field><field name="name">Operaciones de Pago de regalía petrolera</field></record>
+        <record id="einvoice_51_0401" model="einvoice.51"><field name="code">0401</field><field name="name">Ventas no domiciliados que no califican como exportación</field></record>
+        <record id="einvoice_51_0501" model="einvoice.51"><field name="code">0501</field><field name="name">Compra interna</field></record>
+        <record id="einvoice_51_0502" model="einvoice.51"><field name="code">0502</field><field name="name">Anticipos</field></record>
+        <record id="einvoice_51_0503" model="einvoice.51"><field name="code">0503</field><field name="name">Compra de oro</field></record>
+        <record id="einvoice_51_1001" model="einvoice.51"><field name="code">1001</field><field name="name">Operación Sujeta a Detracción</field></record>
+        <record id="einvoice_51_1002" model="einvoice.51"><field name="code">1002</field><field name="name">Operación Sujeta a Detracción - Recursos Hidrobiológicos</field></record>
+        <record id="einvoice_51_1003" model="einvoice.51"><field name="code">1003</field><field name="name">Operación Sujeta a Detracción - Servicios de Transporte Pasajeros</field></record>
+        <record id="einvoice_51_1004" model="einvoice.51"><field name="code">1004</field><field name="name">Operación Sujeta a Detracción - Servicios de Transporte Carga</field></record>
+        <record id="einvoice_51_2001" model="einvoice.51"><field name="code">2001</field><field name="name">Operación Sujeta a Percepción</field></record>
+        <record id="einvoice_51_2100" model="einvoice.51"><field name="code">2100</field><field name="name">Créditos a empresas</field></record>
+        <record id="einvoice_51_2101" model="einvoice.51"><field name="code">2101</field><field name="name">Créditos de consumo revolvente</field></record>
+        <record id="einvoice_51_2102" model="einvoice.51"><field name="code">2102</field><field name="name">Créditos de consumo no revolvente</field></record>
+        <record id="einvoice_51_2103" model="einvoice.51"><field name="code">2103</field><field name="name">Otras operaciones no gravadas - Empresas del sistema financiero y cooperativas de ahorro y crédito no autorizadas a captar recursos del público</field></record>
+        <record id="einvoice_51_2104" model="einvoice.51"><field name="code">2104</field><field name="name">Otras operaciones no gravadas - Empresas del sistema de seguros</field></record>
+    </data>
+</odoo>

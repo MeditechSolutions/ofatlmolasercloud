@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="l10n_latam_base.view_partner_latam_form" model="ir.ui.view">
+            <field name="active" eval="False"/>
+        </record>
+        
+        <record id="base_vat.view_partner_form" model="ir.ui.view">
+            <field name="active" eval="False"/>
+        </record>
+        
+        <record id="view_partner_form" model="ir.ui.view">
+            <field name="name">res.partner.form.mouse_ruc_validation</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//span[hasclass('o_vat_label')]" position="replace">
+                    <span class="o_vat_label">Doc. de Identidad</span>
+                </xpath>
+                
+                <xpath expr="//sheet" position="before">
+                    <header>
+                        <button string="Actualizar datos DNI/RUC" type="object" name="update_document"/>
+                        <field name="state" widget="statusbar" nolabel="1" statusbar_visible="habido, nhabido" statusbar_colors="{'habido': 'green', 'nhabido': 'red'}"/>
+                    </header>
+                </xpath>
+                
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="placeholder">Apellidos y Nombres / Razón Social</attribute>
+                </xpath>
+                
+                <xpath expr="//field[@name='vat']" position="replace"/>
+                <xpath expr="//div[@class='o_row']" position="before">
+                    <div>
+                        <div name="mouse_registration_name" class="o_row">
+                            <label name="registration_name" for="registration_name" string="Razón social"/>
+                            <field name="registration_name" placeholder="Razón social..." nolabel="1"/>
+                        </div>
+                    </div>
+                    <div attrs="{'invisible': [('company_type','=','person')]}">
+                        <div name="mouse_commercial_name" class="o_row">
+                            <label name="commercial_name" for="commercial_name" string="Nombre comercial"/>
+                            <field name="commercial_name" placeholder="Nombre comercial..." nolabel="1"/>
+                        </div>
+                    </div>
+                    <div>
+                        <div name="mouse_l10n_latam_vat" class="o_row">
+                            <label name="l10n_latam_identification_type_id" for="l10n_latam_identification_type_id" string="Doc. Identidad"/>
+                            <field name="l10n_latam_identification_type_id" placeholder="Tipo Doc. Identidad..." nolabel="1" options="{'no_open': True, 'no_create': True}" domain="country_id and ['|', ('country_id','=',False), ('country_id','=',country_id)] or []"/>
+                            <span name="mouse_l10n_latam_vat_separator" class="oe_read_only" attrs="{'invisible': ['|', ('l10n_latam_identification_type_id','=',False), ('vat','=',False)]}"> - </span>
+                            <field name="vat" placeholder="Nro. Doc. Identidad..."/>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="res_partner_kanban_view" model="ir.ui.view">
+            <field name="name">res.partner.kanban.mouse_ruc_validation</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('oe_kanban_details')]/ul/li[1]" position="before">
+                    <li t-if="record.vat.raw_value"><t t-if="record.l10n_latam_identification_type_id.raw_value"><field name="l10n_latam_identification_type_id"/> - </t><field name="vat"/></li>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_res_partner_filter" model="ir.ui.view">
+            <field name="name">res.partner.select.mouse_ruc_validation</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="filter_domain">['|','|','|',('display_name','ilike',self),('ref','=',self),('email','ilike',self),('vat','ilike',self)]</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

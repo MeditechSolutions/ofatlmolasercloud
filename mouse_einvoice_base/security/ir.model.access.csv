@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_einvoice_tmpl,einvoice.tmpl,model_einvoice_tmpl,base.group_user,1,0,0,0
+access_einvoice_tmpl_manager,einvoice.tmpl.manager,model_einvoice_tmpl,base.group_erp_manager,1,1,1,1
+access_einvoice_tmpl_account_manager,einvoice.tmpl.manager,model_einvoice_tmpl,account.group_account_manager,1,1,1,1
+access_einvoice_07,einvoice.07,model_einvoice_07,base.group_user,1,0,0,0
+access_einvoice_07_manager,einvoice.07.manager,model_einvoice_07,base.group_erp_manager,1,1,1,1
+access_einvoice_07_account_manager,einvoice.07.manager,model_einvoice_07,account.group_account_manager,1,1,1,1
+access_einvoice_09,einvoice.09,model_einvoice_09,base.group_user,1,0,0,0
+access_einvoice_09_manager,einvoice.09.manager,model_einvoice_09,base.group_erp_manager,1,1,1,1
+access_einvoice_09_account_manager,einvoice.09.manager,model_einvoice_09,account.group_account_manager,1,1,1,1
+access_einvoice_10,einvoice.10,model_einvoice_10,base.group_user,1,0,0,0
+access_einvoice_10_manager,einvoice.10.manager,model_einvoice_10,base.group_erp_manager,1,1,1,1
+access_einvoice_10_account_manager,einvoice.10.manager,model_einvoice_10,account.group_account_manager,1,1,1,1
+access_einvoice_51,einvoice.51,model_einvoice_51,base.group_user,1,0,0,0
+access_einvoice_51_manager,einvoice.51.manager,model_einvoice_51,base.group_erp_manager,1,1,1,1
+access_einvoice_51_account_manager,einvoice.51.manager,model_einvoice_51,account.group_account_manager,1,1,1,1

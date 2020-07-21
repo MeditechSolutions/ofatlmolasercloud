@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<templates id="template" xml:space="preserve">
+    <t t-extend="OrderReceipt">
+        <t t-jquery=".pos-receipt-contact" t-operation="append">
+            <t t-if="order.to_invoice">
+                <t t-if="receipt.invoice_id">
+                    <br/>
+                    <div>Comprobante: <t t-esc="receipt.invoice_id.name"/></div>
+                    <div>Cliente: <t t-esc="receipt.invoice_id.partner_id.registration_name"/></div>
+                    <div><t t-esc="receipt.invoice_id.partner_id.l10n_latam_identification_type_id.name"/> - <t t-esc="receipt.invoice_id.partner_id.vat"/></div>
+                </t>
+            </t>
+        </t>
+        <t t-jquery=".pos-receipt-order-data" t-operation="append">
+            <t t-if="receipt.invoice_id">
+                <t t-if="receipt.invoice_id.qr_code">
+                    <br/>
+                    <div><img class="pos-receipt-qr-code" t-att-src="receipt.invoice_id.qr_code" alt="Logo"/></div>
+                </t>
+            </t>
+        </t>
+    </t>
+</templates>

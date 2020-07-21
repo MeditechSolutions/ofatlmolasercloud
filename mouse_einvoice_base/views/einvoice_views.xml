@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Códigos de Tipo de Afectación del IGV -->
+        <record id="view_einvoice_07_tree" model="ir.ui.view">
+            <field name="name">Códigos de Tipo de Afectación del IGV</field>
+            <field name="model">einvoice.07</field>
+            <field name="arch" type="xml">
+                <tree string="Códigos de Tipo de Afectación del IGV">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="onerosa"/>
+                    <field name="type"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_einvoice_07_form" model="ir.ui.view">
+            <field name="name">Códigos de Tipo de Afectación del IGV</field>
+            <field name="model">einvoice.07</field>
+            <field name="arch" type="xml">
+                <form string="Códigos de Tipo de Afectación del IGV">
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="onerosa"/>
+                            <field name="type"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="einvoice_07_action">
+            <field name="name">Códigos de Tipo de Afectación del IGV</field>
+            <field name="res_model">einvoice.07</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <!-- Códigos de Tipo de Nota de Credito Electronica -->
+        <record id="view_einvoice_09_tree" model="ir.ui.view">
+            <field name="name">Códigos de Tipo de Nota de Crédito Electrónica</field>
+            <field name="model">einvoice.09</field>
+            <field name="arch" type="xml">
+                <tree string="Códigos de Tipo de Nota de Crédito Electrónica">
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_einvoice_09_form" model="ir.ui.view">
+            <field name="name">Códigos de Tipo de Nota de Crédito Electrónica</field>
+            <field name="model">einvoice.09</field>
+            <field name="arch" type="xml">
+                <form string="Códigos de Tipo de Nota de Crédito Electrónica">
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="einvoice_09_action">
+            <field name="name">Códigos de Tipo de Nota de Crédito Electrónica</field>
+            <field name="res_model">einvoice.09</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <!-- Códigos de Tipo de Nota de Debito Electronica -->
+        <record id="view_einvoice_10_tree" model="ir.ui.view">
+            <field name="name">Códigos de Tipo de Nota de Débito Electrónica</field>
+            <field name="model">einvoice.10</field>
+            <field name="arch" type="xml">
+                <tree string="Códigos de Tipo de Nota de Débito Electrónica">
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_einvoice_10_form" model="ir.ui.view">
+            <field name="name">Códigos de Tipo de Nota de Débito Electrónica</field>
+            <field name="model">einvoice.10</field>
+            <field name="arch" type="xml">
+                <form string="Códigos de Tipo de Nota de Débito Electrónica">
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="einvoice_10_action">
+            <field name="name">Códigos de Tipo de Nota de Débito Electrónica</field>
+            <field name="res_model">einvoice.10</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <!-- Código de Tipo de Operacion -->
+        <record id="view_einvoice_51_tree" model="ir.ui.view">
+            <field name="name">Código de Tipo de Operación</field>
+            <field name="model">einvoice.51</field>
+            <field name="arch" type="xml">
+                <tree string="Código de Tipo de Operación">
+                    <field name="code"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_einvoice_51_form" model="ir.ui.view">
+            <field name="name">Código de Tipo de Operación</field>
+            <field name="model">einvoice.51</field>
+            <field name="arch" type="xml">
+                <form string="Código de Tipo de Operación">
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="einvoice_51_action">
+            <field name="name">Código de Tipo de Operación</field>
+            <field name="res_model">einvoice.51</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <!-- Menu -->
+        <menuitem name="Catálogos de la SUNAT" id="einvoice_configuration_menu" parent="account.menu_finance_configuration" sequence="23"/>
+        <menuitem name="Catálogo 07 - Tipo de Afectación del IGV" id="einvoice_07_menu" parent="einvoice_configuration_menu" action="einvoice_07_action" sequence="7"/>
+        <menuitem name="Catálogo 09 - Tipo de Nota de Crédito" id="einvoice_09_menu" parent="einvoice_configuration_menu" action="einvoice_09_action" sequence="9"/>
+        <menuitem name="Catálogo 10 - Tipo de Nota de Débito" id="einvoice_10_menu" parent="einvoice_configuration_menu" action="einvoice_10_action" sequence="10"/>
+        <menuitem name="Catálogo 51 - Códigos de Tipo de Operación" id="einvoice_51_menu" parent="einvoice_configuration_menu" action="einvoice_51_action" sequence="51"/>
+    </data>
+</odoo>

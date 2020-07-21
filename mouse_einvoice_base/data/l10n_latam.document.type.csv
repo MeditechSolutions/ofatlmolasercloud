@@ -1,0 +1,5 @@
+"id","country_id:id","name","doc_code_prefix","code","report_name","internal_type"
+pe_01,base.pe,"Factura",F,"01","Factura","invoice"
+pe_03,base.pe,"Boleta de venta",B,"03","Boleta","invoice"
+pe_07,base.pe,"Nota de crédito",,"07","Nota de Crédito","credit_note"
+pe_08,base.pe,"Nota de débito",,"08","Nota de Débito","debit_note"
