@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ir_cron_bcr_exchange_rate" model="ir.cron">
+            <field name="name">BCR: Tipo de cambio</field>
+            <field name="model_id" ref="base.model_res_currency_rate"/>
+            <field name="state">code</field>
+            <field name="code">model.calcular_tasa_dolar_euro_bcr()</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+        </record>
+    </data>
+</odoo>
+
