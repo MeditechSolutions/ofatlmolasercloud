@@ -18,6 +18,9 @@ class AccountMove(models.Model) :
         img = qr.make_image(fill_color="black", back_color="white")
         return img
     
+    def _check_balanced(self):
+        pass
+    
     def generate_qr_base_64(self) :
         self.ensure_one()
         partner = self.partner_id.sudo()
