@@ -1506,6 +1506,8 @@ class AccountMove(models.Model) :
             
             if unsigned_invoice_dictionary :
                 nombre = invoice_company.partner_id.vat + '-' + tipo_veri + '-' + record.name
+                if tipo_veri=='01' and record.name[0] == 'B' :
+                    nombre = invoice_company.partner_id.vat + '-03-' + record.name
                 record.write({'unsigned_xml': unsigned_invoice_dictionary['unsigned_xml'],
                               'unsigned_xml_binary': base64.b64encode(unsigned_invoice_dictionary['unsigned_xml'].encode()),
                               'unsigned_xml_binary_filename': nombre + '.xml'})
