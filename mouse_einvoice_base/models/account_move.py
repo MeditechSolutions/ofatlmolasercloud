@@ -270,7 +270,10 @@ class AccountMove(models.Model) :
         listID="0101"
         name="Tipo de Operacion"
         listSchemeURI="urn:pe:gob:sunat:cpe:see:gem:catalogos:catalogo51">'''
-        xml_doc = xml_doc + self.journal_id.l10n_latam_document_type_id.code #('''01''' if len(invoice.partner_id.vat) == 11 else '''03''')
+        if self.journal_id.l10n_latam_document_type_id.code=='01' and self.name[0] == 'B' :
+            xml_doc = xml_doc + '03'
+        else :
+            xml_doc = xml_doc + self.journal_id.l10n_latam_document_type_id.code #('''01''' if len(invoice.partner_id.vat) == 11 else '''03''')
         xml_doc = xml_doc + '''</cbc:InvoiceTypeCode>
     <cbc:Note
         languageLocaleID="1000">'''
