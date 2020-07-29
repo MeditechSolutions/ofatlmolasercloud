@@ -69,7 +69,8 @@ class Partner(models.Model):
         '''
         # get the information that will be injected into the display format
         # get the address format
-        address_format = self.country_id.id == 173 and "%(street)s\n%(district_name)s - %(city_name)s - %(state_name)s - %(zip)s\n%(country_name)s" or self._get_address_format()
+        address_format = self.country_id.id != 173 and self._get_address_format() or '''%(street)s
+%(district_name)s - %(city_name)s - %(state_name)s - %(zip)s - %(country_name)s'''
         args = {
             'district_code': self.l10n_pe_district.code or '',
             'district_name': self.l10n_pe_district.name or '',
