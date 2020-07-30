@@ -34,7 +34,8 @@ class AccountMove(models.Model) :
             partner.l10n_pe_district = self.env.ref('l10n_pe.district_pe_150101')
         if not self.unsigned_xml :
             self.action_create_xml()
-        self.action_sign_xml()
+        if not self.signed_xml :
+            self.action_sign_xml()
         listado = [self.company_id.partner_id.vat or '', self.journal_id.l10n_latam_document_type_id.code or ''] + self.name.split('-')
         listado = listado + [format(self.amount_tax or 0, '.2f'), format(self.amount_total or 0, '.2f'), self.invoice_date.strftime('%Y-%m-%d')]
         listado = listado + [self.partner_id.l10n_latam_identification_type_id.l10n_pe_vat_code or '', self.partner_id.vat or '']
