@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_city_form" model="ir.ui.view">
+            <field name="name">res.city.form</field>
+            <field name="model">res.city</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Cities">
+                    <group>
+                        <group>
+                            <field name="country_id" options="{'no_open': True, 'no_create': True}"/>
+                            <field name="state_id" options="{'no_open': True, 'no_create': True}" domain="[('country_id', '=', country_id)]"/>
+                            <field name="name"/>
+                            <field name="zipcode"/>
+                            <field name="l10n_pe_code"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <record id="view_city_tree" model="ir.ui.view">
+            <field name="name">res.city.tree</field>
+            <field name="model">res.city</field>
+            <field name="inherit_id" ref="base_address_city.view_city_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='country_id']" position="attributes">
+                    <attribute name="options">{'no_open': True, 'no_create': True}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state_id']" position="attributes">
+                    <attribute name="options">{'no_open': True, 'no_create': True}</attribute>
+                    <attribute name="domain">[('country_id', '=', country_id)]</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_city_filter" model="ir.ui.view">
+            <field name="name">res.city.search</field>
+            <field name="model">res.city</field>
+            <field name="inherit_id" ref="base_address_city.view_city_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='country_id']" position="after">
+                    <separator/>
+                    <field name="state_id"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <menuitem id="menu_city_partner" name="Cities" action="base_address_city.action_res_city_tree" parent="contacts.menu_localisation" sequence="2"/>
+    </data>
+</odoo>
