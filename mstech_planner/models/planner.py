@@ -38,7 +38,7 @@ class PlannerSpot(models.Model) :
     @api.depends('spots', 'planner_ids')
     def _compute_available_spots(self) :
         for record in self :
-            if record.spots - len(record.planner_ids) :
+            if (record.spots - len(record.planner_ids)) < 0 :
                 raise UserError('Error')
             record.available_spots = record.spots - len(record.planner_ids)
     
