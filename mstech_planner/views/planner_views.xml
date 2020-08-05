@@ -104,12 +104,12 @@
                             <field name="employee_id" options="{'no_create':true, 'no_open':true}"/>
                         </group>
                     </group>
-                    <field name="procedure_ids">
-                        <tree create="0" edit="0" delete="0" editable="top">
-                            <field name="default_code" optional="show" readonly="1"/>
-                            <field name="categ_id" optional="hide" readonly="1" options="{'no_create':true, 'no_open':true}"/>
+                    <field name="procedure_ids" options="{'no_create':true, 'no_open':true}">
+                        <tree edit="0" delete="0">
+                            <field name="default_code" optional="hide" readonly="1"/>
                             <field name="name" readonly="1"/>
                             <field name="lst_price" readonly="1"/>
+                            <field name="categ_id" optional="hide" readonly="1" options="{'no_create':true, 'no_open':true}"/>
                             <field name="product_template_attribute_value_ids" optional="hide" readonly="1" options="{'no_create':true, 'no_open':true}" groups="product.group_product_variant" widget="many2many_tags"/>
                             <field name="company_id" optional="hide" readonly="1" options="{'no_create':true, 'no_open':true}" groups="base.group_multi_company"/>
                         </tree>
