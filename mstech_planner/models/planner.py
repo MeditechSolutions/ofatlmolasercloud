@@ -18,60 +18,6 @@ class PlannerProfessional(models.Model) :
     employee_id = fields.Many2one(comodel_name='hr.employee', string='Employee', required=True)
     procedure_ids = fields.Many2many(comodel_name='product.product', string='Procedures', domain=[('type','=','service')])
 
-class PlannerPlanner(models.Model) :
-    _name = 'planner.planner'
-    _description = 'Planner'
-    
-    def _get_default_timezone(self) :
-        return DEFAULT_TIMEZONE
-    
-    name = fields.Char(string='Planner', readonly=True, copy=False, default='/')
-    state = fields.Selection(string='Status', required=True, readonly=True, copy=False, tracking=True, default='planned',
-                             selection=[('planned','Planned'),('received','Received'),('attended','Attended'),('cancel','Cancelled')])
-    received = fields.Boolean(string='Received')
-    patient_id = fields.Many2one(comodel_name='res.partner', string='Patient')
-    professional_id = fields.Many2one(comodel_name='planner.professional', string='Professional')
-    procedure_ids = fields.Many2many(comodel_name='product.product', string='Procedures', compute='_compute_professional_id', store=True)
-    procedure_id = fields.Many2one(comodel_name='product.product', string='Procedure')
-    spot_id = fields.Many2one(comodel_name='planner.spot', string='Spot', domain=[('available_spots','>',0)])
-    date = fields.Date(string='Date', compute='_compute_spot_id', store=True, readonly=True)
-    start = fields.Datetime(string='Start', compute='_compute_spot_id', store=True, readonly=True)
-    end = fields.Datetime(string='End', compute='_compute_spot_id', store=True, readonly=True)
-    
-    @api.depends('spot_id')
-    def _compute_spot_id(self) :
-        for record in self :
-            record.date = record.spot_id.date
-            record.start = record.spot_id.start
-            record.end = record.spot_id.end
-    
-    @api.depends('professional_id')
-    def _compute_professional_id(self) :
-        for record in self :
-            record.procedure_ids = record.professional_id.procedure_ids
-    
-    @api.depends('patient_id', 'professional_id', 'date', 'start', 'end')
-    def name_get(self) :
-        result = []
-        current_tz = self.env.user.tz or self._get_default_timezone()
-        for planner in self :
-            name = '/'
-            if planner.patient_id and planner.professional_id and planner.date and planner.start and planner.end :
-                #local_start = local_datetime(planner.start, current_tz)
-                #local_end = local_datetime(planner.end, current_tz)
-                name = (planner.patient_id.name,
-                        planner.professional_id.display_name,
-                        planner.procedure_id.name,
-                        #planner.date.strftime('%d/%m/%Y'),
-                        format_date(self.env, planner.date, date_format='dd/MM/Y'),
-                        #local_start.strftime('%H:%M:%S'),
-                        #local_end.strftime('%H:%M:%S'))
-                        format_datetime(self.env, planner.start, tz=current_tz, dt_format='HH:mm:ss'),
-                        format_datetime(self.env, planner.end, tz=current_tz, dt_format='HH:mm:ss'))
-                name = _('Appointment from %s with %s for %s on the %s from %s to %s') % name
-            result.append((planner.id, name))
-        return result
-
 class PlannerSpot(models.Model) :
     _name = 'planner.spot'
     _description = 'Spot'
@@ -86,7 +32,7 @@ class PlannerSpot(models.Model) :
     start = fields.Datetime(string='Start')
     end = fields.Datetime(string='End')
     spots = fields.Integer(string='Spots', default=1, required=True)
-    planner_ids = fields.One2many(comodel_name='planner.planner', inverse_id='spot_id', string='Planners')
+    planner_ids = fields.One2many(comodel_name='planner.planner', inverse_name='spot_id', string='Planners')
     available_spots = fields.Integer(string='Available Spots', compute='_compute_available_spots', store=True)
     
     @api.depends('spots', 'planner_ids')
@@ -141,4 +87,58 @@ class PlannerProfessionalAvailability(models.Model) :
                         format_datetime(self.env, avail.end, tz=current_tz, dt_format='HH:mm:ss'))
                 name = ('%s: %s %s - %s') % name
             result.append((avail.id, name))
+        return result
+
+class PlannerPlanner(models.Model) :
+    _name = 'planner.planner'
+    _description = 'Planner'
+    
+    def _get_default_timezone(self) :
+        return DEFAULT_TIMEZONE
+    
+    name = fields.Char(string='Planner', readonly=True, copy=False, default='/')
+    state = fields.Selection(string='Status', required=True, readonly=True, copy=False, tracking=True, default='planned',
+                             selection=[('planned','Planned'),('received','Received'),('attended','Attended'),('cancel','Cancelled')])
+    received = fields.Boolean(string='Received')
+    patient_id = fields.Many2one(comodel_name='res.partner', string='Patient')
+    professional_id = fields.Many2one(comodel_name='planner.professional', string='Professional')
+    procedure_ids = fields.Many2many(comodel_name='product.product', string='Procedures', compute='_compute_professional_id', store=True)
+    procedure_id = fields.Many2one(comodel_name='product.product', string='Procedure')
+    spot_id = fields.Many2one(comodel_name='planner.spot', string='Spot', domain=[('available_spots','>',0)])
+    date = fields.Date(string='Date', compute='_compute_spot_id', store=True, readonly=True)
+    start = fields.Datetime(string='Start', compute='_compute_spot_id', store=True, readonly=True)
+    end = fields.Datetime(string='End', compute='_compute_spot_id', store=True, readonly=True)
+    
+    @api.depends('spot_id')
+    def _compute_spot_id(self) :
+        for record in self :
+            record.date = record.spot_id.date
+            record.start = record.spot_id.start
+            record.end = record.spot_id.end
+    
+    @api.depends('professional_id')
+    def _compute_professional_id(self) :
+        for record in self :
+            record.procedure_ids = record.professional_id.procedure_ids
+    
+    @api.depends('patient_id', 'professional_id', 'date', 'start', 'end')
+    def name_get(self) :
+        result = []
+        current_tz = self.env.user.tz or self._get_default_timezone()
+        for planner in self :
+            name = '/'
+            if planner.patient_id and planner.professional_id and planner.date and planner.start and planner.end :
+                #local_start = local_datetime(planner.start, current_tz)
+                #local_end = local_datetime(planner.end, current_tz)
+                name = (planner.patient_id.name,
+                        planner.professional_id.display_name,
+                        planner.procedure_id.name,
+                        #planner.date.strftime('%d/%m/%Y'),
+                        format_date(self.env, planner.date, date_format='dd/MM/Y'),
+                        #local_start.strftime('%H:%M:%S'),
+                        #local_end.strftime('%H:%M:%S'))
+                        format_datetime(self.env, planner.start, tz=current_tz, dt_format='HH:mm:ss'),
+                        format_datetime(self.env, planner.end, tz=current_tz, dt_format='HH:mm:ss'))
+                name = _('Appointment from %s with %s for %s on the %s from %s to %s') % name
+            result.append((planner.id, name))
         return result
