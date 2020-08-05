@@ -1,0 +1,252 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* mstech_planner
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-05 21:22+0000\n"
+"PO-Revision-Date: 2020-08-05 21:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mstech_planner
+#: code:addons/mstech_planner/models/planner.py:0
+#, python-format
+msgid "Appointment from %s with %s for %s on the %s from %s to %s"
+msgstr "Cita de %s con %s para %s el %s de %s a %s"
+
+#. module: mstech_planner
+#: model:ir.model.fields.selection,name:mstech_planner.selection__planner_planner__state__attended
+msgid "Attended"
+msgstr "Atendido"
+
+#. module: mstech_planner
+#: model:ir.actions.act_window,name:mstech_planner.action_planner_professional_availability
+#: model:ir.model,name:mstech_planner.model_planner_professional_availability
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional_availability__name
+#: model:ir.ui.menu,name:mstech_planner.menu_action_planner_professional_availability
+#: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_professional_availability_form
+#: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_professional_availability_tree
+msgid "Availability"
+msgstr "Disponibilidad"
+
+#. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_spot__available_spots
+msgid "Available Spots"
+msgstr "Cupos Disponibles"
+
+#. module: mstech_planner
+#: model:ir.model.fields.selection,name:mstech_planner.selection__planner_planner__state__cancel
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_planner__create_uid
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional__create_uid
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional_availability__create_uid
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_spot__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_planner__create_date
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional__create_date
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional_availability__create_date
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_spot__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_planner__date
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_spot__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional_availability__day
+msgid "Day"
+msgstr "Día"
+
+#. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_planner__display_name
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional__display_name
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional_availability__display_name
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_spot__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional_availability__duration
+msgid "Duration"
+msgstr "Duración"
+
+#. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional__employee_id
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_planner__end
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional_availability__end
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_spot__end
+msgid "End"
+msgstr "Fin"
+
+#. module: mstech_planner
+#: model:ir.model.fields.selection,name:mstech_planner.selection__planner_professional_availability__day__5
+msgid "Friday"
+msgstr "Viernes"
+
+#. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_planner__id
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional__id
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional_availability__id
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_spot__id
+msgid "ID"
+msgstr ""
+
+#. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_planner____last_update
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional____last_update
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional_availability____last_update
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_spot____last_update
+msgid "Last Modified on"
+msgstr "última Modificación el"
+
+#. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_planner__write_uid
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional__write_uid
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional_availability__write_uid
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_spot__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_planner__write_date
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional__write_date
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional_availability__write_date
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_spot__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: mstech_planner
+#: model:ir.model.fields.selection,name:mstech_planner.selection__planner_professional_availability__day__1
+msgid "Monday"
+msgstr "Lunes"
+
+#. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_planner__patient_id
+msgid "Patient"
+msgstr "Paciente"
+
+#. module: mstech_planner
+#: model:ir.model.fields.selection,name:mstech_planner.selection__planner_planner__state__planned
+msgid "Planned"
+msgstr "Agendado"
+
+#. module: mstech_planner
+#: model:ir.actions.act_window,name:mstech_planner.action_planner_planner
+#: model:ir.model,name:mstech_planner.model_planner_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_planner__name
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_spot__name
+#: model:ir.ui.menu,name:mstech_planner.menu_action_planner_planner
+#: model:ir.ui.menu,name:mstech_planner.menu_planner
+#: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_planner_form
+#: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_planner_tree
+msgid "Planner"
+msgstr "Agenda"
+
+#. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_spot__planner_ids
+msgid "Planners"
+msgstr "Agendas"
+
+#. module: mstech_planner
+#: model:ir.actions.act_window,name:mstech_planner.action_planner_procedure
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_planner__procedure_id
+#: model:ir.ui.menu,name:mstech_planner.menu_action_planner_procedure
+msgid "Procedure"
+msgstr "Procedimiento"
+
+#. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_planner__procedure_ids
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional__procedure_ids
+msgid "Procedures"
+msgstr "Procedimientos"
+
+#. module: mstech_planner
+#: model:ir.actions.act_window,name:mstech_planner.action_planner_professional
+#: model:ir.model,name:mstech_planner.model_planner_professional
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_planner__professional_id
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional_availability__professional_id
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_spot__professional_id
+#: model:ir.ui.menu,name:mstech_planner.menu_action_planner_professional
+#: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_professional_form
+#: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_professional_tree
+msgid "Professional"
+msgstr "Profesional"
+
+#. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_planner__received
+#: model:ir.model.fields.selection,name:mstech_planner.selection__planner_planner__state__received
+msgid "Received"
+msgstr "Recepcionado"
+
+#. module: mstech_planner
+#: model:ir.model.fields.selection,name:mstech_planner.selection__planner_professional_availability__day__6
+msgid "Saturday"
+msgstr "Sábado"
+
+#. module: mstech_planner
+#: model:ir.actions.act_window,name:mstech_planner.action_planner_spot
+#: model:ir.model,name:mstech_planner.model_planner_spot
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_planner__spot_id
+#: model:ir.ui.menu,name:mstech_planner.menu_action_planner_spot
+#: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_spot_form
+#: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_spot_tree
+msgid "Spot"
+msgstr "Cupo"
+
+#. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional_availability__spots
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_spot__spots
+msgid "Spots"
+msgstr "Cupos"
+
+#. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_planner__start
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_professional_availability__start
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_spot__start
+msgid "Start"
+msgstr "Inicio"
+
+#. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_planner__state
+msgid "Status"
+msgstr "Estado"
+
+#. module: mstech_planner
+#: model:ir.model.fields.selection,name:mstech_planner.selection__planner_professional_availability__day__7
+msgid "Sunday"
+msgstr "Domingo"
+
+#. module: mstech_planner
+#: model:ir.model.fields.selection,name:mstech_planner.selection__planner_professional_availability__day__4
+msgid "Thursday"
+msgstr "Jueves"
+
+#. module: mstech_planner
+#: model:ir.model.fields.selection,name:mstech_planner.selection__planner_professional_availability__day__2
+msgid "Tuesday"
+msgstr "Martes"
+
+#. module: mstech_planner
+#: model:ir.model.fields.selection,name:mstech_planner.selection__planner_professional_availability__day__3
+msgid "Wednesday"
+msgstr "Miércoles"

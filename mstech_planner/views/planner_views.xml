@@ -146,13 +146,13 @@
                 <form string="Planner">
                     <group>
                         <group>
-                            <field name="patient_id" widget="res_partner_many2one" string="Paciente"/>
+                            <field name="patient_id" widget="res_partner_many2one"/>
                             <field name="professional_id" options="{'no_create':true}"/>
                             <field name="procedure_ids" widget="many2many_tags" invisible="1"/>
                             <field name="spot_id" options="{'no_create':true, 'no_open':true}"/>
-                            <field name="date" string="Fecha" attrs="{}" invisible="1"/>
-                            <field name="start" string="Inicio" attrs="{}" invisible="1"/>
-                            <field name="end" string="Fin" attrs="{}" invisible="1"/>
+                            <field name="date" invisible="1"/>
+                            <field name="start" invisible="1"/>
+                            <field name="end" invisible="1"/>
                             <field name="procedure_id" options="{'no_create':true, 'no_open':true}" domain="[('id','in',procedure_ids)]"/>
                         </group>
                         <group>
