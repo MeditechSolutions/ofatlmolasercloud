@@ -29,7 +29,7 @@
                             <field name="professional_id" options="{'no_create':true,'no_open':true}"/>
                             <field name="date"/>
                             <field name="start"/>
-                            <field name="stop"/>
+                            <field name="end"/>
                             <field name="spots"/>
                             <field name="available_spots" invisible="1"/>
                         </group>
