@@ -12,6 +12,7 @@
         'base',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'views/planner_views.xml',
     ],
     'installable': True,
