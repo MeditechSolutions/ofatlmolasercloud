@@ -27,6 +27,7 @@ msgid "Appointment from %s with %s for %s on the %s from %s to %s"
 msgstr ""
 
 #. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_planner__attended
 #: model:ir.model.fields.selection,name:mstech_planner.selection__planner_planner__state__attended
 msgid "Attended"
 msgstr ""
@@ -172,6 +173,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:mstech_planner.field_planner_spot__name
 #: model:ir.ui.menu,name:mstech_planner.menu_action_planner_planner
 #: model:ir.ui.menu,name:mstech_planner.menu_planner
+#: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_planner_calendar
 #: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_planner_form
 #: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_planner_tree
 msgid "Planner"
