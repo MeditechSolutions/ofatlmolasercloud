@@ -121,7 +121,7 @@ class PlannerProfessionalAvailability(models.Model) :
                         self.env['planner.spot'].sudo().create({'professional_id': record.professional_id.id,
                                                                 'date': str(actual),
                                                                 'start': str(unaware_start),
-                                                                'end': str(unaware_start + duration),
+                                                                'end': str(unaware_start + duration_offset),
                                                                 'spots': spots})
     
     @api.model
