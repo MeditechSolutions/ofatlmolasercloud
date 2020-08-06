@@ -169,7 +169,7 @@ class PlannerPlanner(models.Model) :
     def write(self, values) :
         res = super(PlannerPlanner, self).write(values)
         if values.get('received') :
-            self.filtered(lambda r: r.state=='planned')._receive_patient()
+            self.filtered(lambda r: r.state=='planned').receive_patient()
         return res
     
     @api.depends('spot_id')
