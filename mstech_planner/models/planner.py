@@ -121,7 +121,7 @@ class PlannerProfessionalAvailability(models.Model) :
                 if not spot.search([('professional_id','=',record.professional_id.id), ('date','=',str(actual))]) :
                     raise UserError(str(unaware_starts)+'\n'+str(aware_now.date().isoweekday()))
                     for unaware_start in unaware_starts :
-                        raise UserError(str(availability_record)+'\n'+str(aware_now.isoweekday()))
+                        #raise UserError(str(availability_record)+'\n'+str(aware_now.isoweekday()))
                         spot.create({'professional_id': record.professional_id.id,
                                      'date': str(actual),
                                      'start': str(unaware_start),
