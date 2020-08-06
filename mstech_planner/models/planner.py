@@ -221,7 +221,7 @@ class PlannerPlanner(models.Model) :
         self.filtered(lambda r: r.state == 'attended' and not r.attended).write({'attended': True})
         self.filtered(lambda r: r.state not in ['received','attended'] and r.received).write({'received': False})
         self.filtered(lambda r: r.state not in ['received','attended'] and r.attended).write({'attended': False})
-        self.filtered(lambda r: r.received).create_sale_order()
+        #self.filtered(lambda r: r.received).create_sale_order() #only created through button or through action
     
     @api.depends('spot_id')
     def _compute_spot_id(self) :
