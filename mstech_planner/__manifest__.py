@@ -11,6 +11,7 @@
         'product',
         'base',
         'hr',
+        'sale',
     ],
     'data': [
         'data/ir_cron_data.xml',
