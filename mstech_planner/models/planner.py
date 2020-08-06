@@ -3,7 +3,8 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError, Warning
 from odoo.tools.misc import format_date, format_datetime
-#import pytz
+import datetime
+import pytz
 
 DEFAULT_TIMEZONE = 'America/Lima'
 
@@ -64,7 +65,7 @@ class PlannerProfessionalAvailability(models.Model) :
     def _get_default_timezone(self) :
         return DEFAULT_TIMEZONE
     
-    name = fields.Char(string='Availability', required=True, readonly=True, copy=False, default='/')
+    name = fields.Char(string='Availability', readonly=True, copy=False, default='/')
     professional_id = fields.Many2one(comodel_name='planner.professional', string='Professional', required=True)
     day = fields.Selection(selection=[('1','Monday'),('2','Tuesday'),('3','Wednesday'),('4','Thursday'),('5','Friday'),('6','Saturday'),('7','Sunday')],
                            string='Day', default='1', required=True)
@@ -77,17 +78,56 @@ class PlannerProfessionalAvailability(models.Model) :
     def name_get(self) :
         result = []
         current_tz = self.env.user.tz or self._get_default_timezone()
+        current_offset = datetime.datetime.now(pytz.timezone(current_tz)).utcoffset()
         for avail in self :
             name = '/'
             if avail.professional_id and avail.day :
-                
+                start = datetime.datetime.combine(datetime.date.today(), datetime.datetime.min.time())
+                end = start + datetime.timedelta(hours=avail.end) - current_offset
+                start = start + datetime.timedelta(hours=avail.start) - current_offset
                 name = (avail.professional_id.display_name,
                         dict(self._fields['day'].selection)[avail.day],
-                        format_datetime(self.env, avail.start, tz=current_tz, dt_format='HH:mm:ss'),
-                        format_datetime(self.env, avail.end, tz=current_tz, dt_format='HH:mm:ss'))
+                        format_datetime(self.env, start, tz=current_tz, dt_format='HH:mm'),
+                        format_datetime(self.env, end, tz=current_tz, dt_format='HH:mm'))
                 name = ('%s: %s %s - %s') % name
             result.append((avail.id, name))
         return result
+    
+    def spot_creation(self, availability_record=False) :
+        current_tz = self.env.user.tz or self._get_default_timezone()
+        current_offset = datetime.datetime.now(pytz.timezone(current_tz)).utcoffset()
+        aware_now = fields.Datetime.now().astimezone(pytz.timezone(current_tz))
+        aware_today = aware_now.date()
+        spot = self.env['planner.spot'].sudo()
+        for record in (availability_record or self.sudo().search([('day','=',str(aware_now.isoweekday()))])) :
+            duration = record.duration
+            duration_offset = datetime.timedelta(hours=duration)
+            spots = record.spots
+            for i in range(5) :
+                actual = aware_today + datetime.timedelta(days=i)
+                start = record.start
+                end = record.end
+                unaware_starts = []
+                while start < end :
+                    unaware_start = datetime.datetime.combine(actual, datetime.datetime.min.time())
+                    unaware_start = unaware_start + datetime.timedelta(hours=start) - current_offset
+                    unaware_starts.append(unaware_start)
+                    start = start + duration
+                    if start > end :
+                        record.end = start
+                if not spot.search([('professional_id','=',record.professional_id.id), ('date','=',str(actual))]) :
+                    for unaware_start in unaware_starts :
+                        self.env['planner.spot'].sudo().create({'professional_id': record.professional_id.id,
+                                                                'date': str(actual),
+                                                                'start': str(unaware_start),
+                                                                'end': str(unaware_start + duration),
+                                                                'spots': spots})
+    
+    @api.multi
+    def create(self, values) :
+        res = super(PlannerProfessionalAvailability, self).create(values)
+        self.spot_creation(availability_record=res)
+        return res
 
 class PlannerPlanner(models.Model) :
     _name = 'planner.planner'
