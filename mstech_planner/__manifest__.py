@@ -13,7 +13,7 @@
         'hr',
     ],
     'data': [
-        'data/ir_cron.xml',
+        'data/ir_cron_data.xml',
         'security/ir.model.access.csv',
         'views/planner_views.xml',
     ],
