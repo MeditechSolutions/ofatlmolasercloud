@@ -30,9 +30,9 @@ class PlannerSpot(models.Model) :
     name = fields.Char(string='Planner', readonly=True, copy=False, default='/')
     active = fields.Boolean(string='Active', default=True)
     professional_id = fields.Many2one(comodel_name='planner.professional', string='Professional')
-    date = fields.Date(string='Date')
-    start = fields.Datetime(string='Start')
-    end = fields.Datetime(string='End')
+    date = fields.Date(string='Date', required=True)
+    start = fields.Datetime(string='Start', required=True)
+    end = fields.Datetime(string='End', required=True)
     spots = fields.Integer(string='Spots', default=1, required=True)
     planner_ids = fields.One2many(comodel_name='planner.planner', inverse_name='spot_id', string='Planners')
     available_spots = fields.Integer(string='Available Spots', compute='_compute_available_spots', store=True)
@@ -151,6 +151,26 @@ class PlannerPlanner(models.Model) :
     date = fields.Date(string='Date', compute='_compute_spot_id', store=True, readonly=True)
     start = fields.Datetime(string='Start', compute='_compute_spot_id', store=True, readonly=True)
     end = fields.Datetime(string='End', compute='_compute_spot_id', store=True, readonly=True)
+    
+    def receive_patient(self) :
+        for record in self.filtered(lambda r: r.state=='planned') :
+            record.state = 'received'
+            if not record.received :
+                record.received = True
+    
+    def mark_attended(self) :
+        for record in self.filtered(lambda r: r.state=='received') :
+            record.state = 'attended'
+    
+    def mark_cancel(self) :
+        for record in self.filtered(lambda r: r.state not in ['attended','cancel']) :
+            record.state = 'cancel'
+    
+    def write(self, values) :
+        res = super(PlannerPlanner, self).write(values)
+        if values.get('received') :
+            self.filtered(lambda r: r.state=='planned')._receive_patient()
+        return res
     
     @api.depends('spot_id')
     def _compute_spot_id(self) :
