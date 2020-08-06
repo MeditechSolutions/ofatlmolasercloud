@@ -167,7 +167,7 @@ class PlannerPlanner(models.Model) :
     start = fields.Datetime(string='Start', compute='_compute_spot_id', store=True, readonly=True)
     end = fields.Datetime(string='End', compute='_compute_spot_id', store=True, readonly=True)
     sale_id = fields.Many2one(comodel_name='sale.order', string='Sale Order', tracking=True)
-    sale_line_id = fields.Many2one(comodel_name='sale.order.line', string='Sale Order Line', tracking=True)
+    sale_line_id = fields.Many2one(comodel_name='sale.order.line', string='Sale Order Line')
     
     def create_sale_order(self) :
         to_order = self.filtered(lambda r: r.id and (not r.sale_id) and r.received and r.patient_id and r.procedure_id)

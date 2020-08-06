@@ -135,6 +135,7 @@
                     <field name="spot_id" invisible="1"/>
                     <field name="state"/>
                     <field name="sale_id" attrs="{'invisible': [('sale_id','=',False)]}"/>
+                    <field name="sale_line_id" invisible="1"/>
                 </tree>
             </field>
         </record>
@@ -164,6 +165,7 @@
                                 <field name="end" invisible="1"/>
                                 <field name="procedure_id" options="{'no_create':true, 'no_open':true}" domain="[('id','in',procedure_ids)]" attrs="{'invisible': [('professional_id','=',False)], 'readonly': ['|', ('received','!=',False), ('attended','!=',False)]}"/>
                                 <field name="sale_id" readonly="1" attrs="{'invisible': [('sale_id','=',False)]}" options="{'no_create':true}"/>
+                                <field name="sale_line_id" readonly="1" invisible="1" options="{'no_create':true}"/>
                             </group>
                             <group>
                                 <field name="name" invisible="1"/>
