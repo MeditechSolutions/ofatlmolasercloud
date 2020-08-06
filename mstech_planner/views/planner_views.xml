@@ -165,6 +165,7 @@
                             <group>
                                 <field name="name" invisible="1"/>
                                 <field name="received" invisible="1"/>
+                                <field name="attended" invisible="1"/>
                             </group>
                         </group>
                     </sheet>
