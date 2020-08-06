@@ -9,9 +9,9 @@
     'website': 'https://www.mstech.pe',
     'depends': [
         'product',
-        'base',
         'hr',
         'sale',
+        'mail',
     ],
     'data': [
         'data/ir_cron_data.xml',

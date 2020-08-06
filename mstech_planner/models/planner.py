@@ -140,7 +140,7 @@ class SaleOrder(models.Model) :
 class PlannerPlanner(models.Model) :
     _name = 'planner.planner'
     _description = 'Planner'
-    _inherit = 'mail.thread'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     
     def _get_default_timezone(self) :
         return DEFAULT_TIMEZONE
