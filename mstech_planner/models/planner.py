@@ -174,7 +174,7 @@ class PlannerPlanner(models.Model) :
         patients = to_order.mapped('patient_id')
         for patient in patients :
             records = to_order.filtered(lambda r: r.patient_id == patient)
-            sale_order = self.env['sale.order'].create({'partner_id': patient.id, 'user_id': self.env.uid, 'order_line': [(0,0,{'product_id': record.procedure_id.id}) for record in records]})
+            sale_order = self.env['sale.order'].create({'partner_id': patient.id, 'user_id': self.env.uid})
             records.write({'sale_id': sale_order.id})
             for record in records :
                 sale_order.write({'order_line': [(0,0,{'product_id': record.procedure_id.id})]})
