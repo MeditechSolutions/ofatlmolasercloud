@@ -51,8 +51,8 @@
                     <field name="name" invisible="1"/>
                     <field name="professional_id"/>
                     <field name="day"/>
-                    <field name="start"/>
-                    <field name="end"/>
+                    <field name="start" widget="float_time"/>
+                    <field name="end" widget="float_time"/>
                     <field name="spots"/>
                 </tree>
 			</field>
@@ -70,7 +70,7 @@
                             <field name="day"/>
                             <field name="start" widget="float_time"/>
                             <field name="end" widget="float_time"/>
-                            <field name="duration"/>
+                            <field name="duration" widget="float_time"/>
                             <field name="spots"/>
                         </group>
                         <group>

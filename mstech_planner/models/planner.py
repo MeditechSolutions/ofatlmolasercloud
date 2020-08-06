@@ -28,7 +28,7 @@ class PlannerSpot(models.Model) :
         return DEFAULT_TIMEZONE
     
     name = fields.Char(string='Planner', readonly=True, copy=False, default='/')
-    active = fields.Char(string='Active', default=True)
+    active = fields.Boolean(string='Active', default=True)
     professional_id = fields.Many2one(comodel_name='planner.professional', string='Professional')
     date = fields.Date(string='Date')
     start = fields.Datetime(string='Start')
@@ -100,7 +100,6 @@ class PlannerProfessionalAvailability(models.Model) :
         aware_now = fields.Datetime.now().astimezone(pytz.timezone(current_tz))
         #aware_today = aware_now.date()
         spot = self.env['planner.spot'].sudo()
-        #raise UserError(str(availability_record)+'\n'+str(aware_now.isoweekday()))
         for record in (availability_record or self.sudo().search([('day','=',str(aware_now.date().isoweekday()))])) :
             duration = record.duration
             duration_offset = datetime.timedelta(hours=duration)
@@ -119,9 +118,7 @@ class PlannerProfessionalAvailability(models.Model) :
                     if start > end :
                         record.end = start
                 if not spot.search([('professional_id','=',record.professional_id.id), ('date','=',str(actual))]) :
-                    #raise UserError(str(unaware_starts)+'\n'+str(aware_now.date().isoweekday()))
                     for unaware_start in unaware_starts :
-                        #raise UserError(str(availability_record)+'\n'+str(aware_now.isoweekday()))
                         spot.create({'professional_id': record.professional_id.id,
                                      'date': str(actual),
                                      'start': str(unaware_start),
