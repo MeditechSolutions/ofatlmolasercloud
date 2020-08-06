@@ -101,11 +101,11 @@ class PlannerProfessionalAvailability(models.Model) :
         #aware_today = aware_now.date()
         spot = self.env['planner.spot'].sudo()
         #raise UserError(str(availability_record)+'\n'+str(aware_now.isoweekday()))
-        for record in (availability_record or self.sudo().search([('day','=',str(aware_now.isoweekday()))])) :
+        for record in (availability_record or self.sudo().search([('day','=',str(aware_now.date().isoweekday()))])) :
             duration = record.duration
             duration_offset = datetime.timedelta(hours=duration)
             spots = record.spots
-            aware_today = aware_now.date() + datetime.timedelta(days=int(record.day)-aware_now.isoweekday())
+            aware_today = aware_now.date() + datetime.timedelta(days=int(record.day)-aware_now.date().isoweekday())
             for i in range(5) :
                 actual = aware_today + datetime.timedelta(days=i)
                 start = record.start
@@ -119,12 +119,14 @@ class PlannerProfessionalAvailability(models.Model) :
                     if start > end :
                         record.end = start
                 if not spot.search([('professional_id','=',record.professional_id.id), ('date','=',str(actual))]) :
+                    raise UserError(str(unaware_starts)+'\n'+str(aware_now.date().isoweekday()))
                     for unaware_start in unaware_starts :
-                        self.env['planner.spot'].sudo().create({'professional_id': record.professional_id.id,
-                                                                'date': str(actual),
-                                                                'start': str(unaware_start),
-                                                                'end': str(unaware_start + duration_offset),
-                                                                'spots': spots})
+                        raise UserError(str(availability_record)+'\n'+str(aware_now.isoweekday()))
+                        spot.create({'professional_id': record.professional_id.id,
+                                     'date': str(actual),
+                                     'start': str(unaware_start),
+                                     'end': str(unaware_start + duration_offset),
+                                     'spots': spots})
     
     @api.model
     def create(self, values) :
