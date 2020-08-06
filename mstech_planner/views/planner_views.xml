@@ -134,6 +134,7 @@
                     <field name="received" widget="boolean_toggle" attrs="{'readonly': [('state','!=','planned')]}"/>
                     <field name="spot_id" invisible="1"/>
                     <field name="state"/>
+                    <field name="sale_id" attrs="{'invisible': [('sale_id','=',False)]}"/>
                 </tree>
 			</field>
 		</record>
@@ -145,7 +146,7 @@
 			<field name="arch" type="xml">
                 <form string="Planner">
                     <header>
-                        <button name="create_sale_order" string="Create Sale Order" class="oe_highlight" type="object" attrs="{'invisible': ['|', ('id','=',False), ('sale_id','!=',False)]}"/>
+                        <button name="create_sale_order" string="Create Sale Order" class="oe_highlight" type="object" attrs="{'invisible': ['|', '|', ('id','=',False), ('sale_id','!=',False), ('state','not in',['received','attended'])]}"/>
                         <button name="receive_patient" string="Receive" class="oe_highlight" type="object" attrs="{'invisible': ['|', ('id','=',False), ('state','!=','planned')]}"/>
                         <button name="mark_attended" string="Mark as Attended" class="oe_highlight" type="object" attrs="{'invisible': ['|', ('id','=',False), ('state','!=','received')]}"/>
                         <button name="mark_cancel" string="Mark as Cancelled" class="oe_highlight" type="object" attrs="{'invisible': ['|', ('id','=',False), ('state','in',['attended','cancel'])]}"/>
@@ -185,7 +186,7 @@
 		</record>
         
         <record id="action_planner_create_sale_order" model="ir.actions.server">
-            <field name="name">Duplicate</field>
+            <field name="name">Create Sale Order</field>
             <field name="model_id" ref="model_planner_planner"/>
             <field name="binding_model_id" ref="model_planner_planner"/>
             <field name="binding_view_types">list</field>
