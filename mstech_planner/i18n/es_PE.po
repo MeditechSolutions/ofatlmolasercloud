@@ -16,6 +16,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_spot__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: mstech_planner
 #: code:addons/mstech_planner/models/planner.py:0
 #, python-format
 msgid "Appointment from %s with %s for %s on the %s from %s to %s"
@@ -212,6 +217,13 @@ msgstr "Sábado"
 #: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_spot_tree
 msgid "Spot"
 msgstr "Cupo"
+
+#. module: mstech_planner
+#: model:ir.actions.server,name:mstech_planner.ir_cron_spot_generation_ir_actions_server
+#: model:ir.cron,cron_name:mstech_planner.ir_cron_spot_generation
+#: model:ir.cron,name:mstech_planner.ir_cron_spot_generation
+msgid "Spot Generation"
+msgstr "Generación de Cupos"
 
 #. module: mstech_planner
 #: model:ir.model.fields,field_description:mstech_planner.field_planner_professional_availability__spots

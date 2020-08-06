@@ -52,7 +52,7 @@ class PlannerSpot(models.Model) :
             name = '/'
             if spot.professional_id and spot.date and spot.start and spot.end :
                 name = (spot.professional_id.display_name,
-                        format_date(self.env, planner.date, date_format='dd/MM/Y'),
+                        format_date(self.env, spot.date, date_format='dd/MM/Y'),
                         format_datetime(self.env, spot.start, tz=current_tz, dt_format='HH:mm:ss'),
                         format_datetime(self.env, spot.end, tz=current_tz, dt_format='HH:mm:ss'))
                 name = ('%s: %s %s - %s') % name
@@ -70,8 +70,8 @@ class PlannerProfessionalAvailability(models.Model) :
     professional_id = fields.Many2one(comodel_name='planner.professional', string='Professional', required=True)
     day = fields.Selection(selection=[('1','Monday'),('2','Tuesday'),('3','Wednesday'),('4','Thursday'),('5','Friday'),('6','Saturday'),('7','Sunday')],
                            string='Day', default='1', required=True)
-    start = fields.Float(string='Start', required=True)
-    end = fields.Float(string='End', required=True)
+    start = fields.Float(string='Start', default=8)
+    end = fields.Float(string='End', default=18)
     duration = fields.Float(string='Duration', default=0.5, required=True)
     spots = fields.Integer(string='Spots', default=1, required=True)
     

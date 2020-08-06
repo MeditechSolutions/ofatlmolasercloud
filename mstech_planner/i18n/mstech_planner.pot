@@ -16,6 +16,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mstech_planner
+#: model:ir.model.fields,field_description:mstech_planner.field_planner_spot__active
+msgid "Active"
+msgstr ""
+
+#. module: mstech_planner
 #: code:addons/mstech_planner/models/planner.py:0
 #, python-format
 msgid "Appointment from %s with %s for %s on the %s from %s to %s"
@@ -99,16 +104,6 @@ msgid "End"
 msgstr ""
 
 #. module: mstech_planner
-#: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_planner_form
-msgid "Fecha"
-msgstr ""
-
-#. module: mstech_planner
-#: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_planner_form
-msgid "Fin"
-msgstr ""
-
-#. module: mstech_planner
 #: model:ir.model.fields.selection,name:mstech_planner.selection__planner_professional_availability__day__5
 msgid "Friday"
 msgstr ""
@@ -119,11 +114,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:mstech_planner.field_planner_professional_availability__id
 #: model:ir.model.fields,field_description:mstech_planner.field_planner_spot__id
 msgid "ID"
-msgstr ""
-
-#. module: mstech_planner
-#: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_planner_form
-msgid "Inicio"
 msgstr ""
 
 #. module: mstech_planner
@@ -153,11 +143,6 @@ msgstr ""
 #. module: mstech_planner
 #: model:ir.model.fields.selection,name:mstech_planner.selection__planner_professional_availability__day__1
 msgid "Monday"
-msgstr ""
-
-#. module: mstech_planner
-#: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_planner_form
-msgid "Paciente"
 msgstr ""
 
 #. module: mstech_planner
@@ -231,6 +216,13 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_spot_form
 #: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_spot_tree
 msgid "Spot"
+msgstr ""
+
+#. module: mstech_planner
+#: model:ir.actions.server,name:mstech_planner.ir_cron_spot_generation_ir_actions_server
+#: model:ir.cron,cron_name:mstech_planner.ir_cron_spot_generation
+#: model:ir.cron,name:mstech_planner.ir_cron_spot_generation
+msgid "Spot Generation"
 msgstr ""
 
 #. module: mstech_planner
