@@ -145,6 +145,7 @@
 			<field name="arch" type="xml">
                 <form string="Planner">
                     <header>
+                        <button name="create_sale_order" string="Create Sale Order" class="oe_highlight" type="object" attrs="{'invisible': ['|', ('id','=',False), ('sale_id','!=',False)]}"/>
                         <button name="receive_patient" string="Receive" class="oe_highlight" type="object" attrs="{'invisible': ['|', ('id','=',False), ('state','!=','planned')]}"/>
                         <button name="mark_attended" string="Mark as Attended" class="oe_highlight" type="object" attrs="{'invisible': ['|', ('id','=',False), ('state','!=','received')]}"/>
                         <button name="mark_cancel" string="Mark as Cancelled" class="oe_highlight" type="object" attrs="{'invisible': ['|', ('id','=',False), ('state','in',['attended','cancel'])]}"/>
@@ -161,6 +162,7 @@
                                 <field name="start" invisible="1"/>
                                 <field name="end" invisible="1"/>
                                 <field name="procedure_id" options="{'no_create':true, 'no_open':true}" domain="[('id','in',procedure_ids)]" attrs="{'invisible': [('professional_id','=',False)], 'readonly': ['|', ('received','!=',False), ('attended','!=',False)]}"/>
+                                <field name="sale_id" readonly="1" attrs="{'invisible': [('sale_id','=',False)]}" options="{'no_create':true}"/>
                             </group>
                             <group>
                                 <field name="name" invisible="1"/>
@@ -181,6 +183,17 @@
                 <calendar string="Planner" date_start="start" date_stop="end" color="professional_id" mode="week" quick_add="false"></calendar>
 			</field>
 		</record>
+        
+        <record id="action_planner_create_sale_order" model="ir.actions.server">
+            <field name="name">Duplicate</field>
+            <field name="model_id" ref="model_planner_planner"/>
+            <field name="binding_model_id" ref="model_planner_planner"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">
+(record or records or model).create_sale_order()
+            </field>
+        </record>
         
         <record id="action_planner_spot" model="ir.actions.act_window">
             <field name="name">Spot</field>

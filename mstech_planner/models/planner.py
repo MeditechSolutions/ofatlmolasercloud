@@ -132,9 +132,15 @@ class PlannerProfessionalAvailability(models.Model) :
         self.spot_creation(availability_record=res)
         return res
 
+class SaleOrder(models.Model) :
+    _inherit = 'sale.order'
+    
+    planner_ids = fields.One2many(comodel_name='planner.planner', inverse_name='sale_id', string='Planner')
+
 class PlannerPlanner(models.Model) :
     _name = 'planner.planner'
     _description = 'Planner'
+    _inherit = 'mail.thread'
     
     def _get_default_timezone(self) :
         return DEFAULT_TIMEZONE
@@ -152,6 +158,7 @@ class PlannerPlanner(models.Model) :
     date = fields.Date(string='Date', compute='_compute_spot_id', store=True, readonly=True)
     start = fields.Datetime(string='Start', compute='_compute_spot_id', store=True, readonly=True)
     end = fields.Datetime(string='End', compute='_compute_spot_id', store=True, readonly=True)
+    sale_id = fields.Many2one(comodel_name='sale.order', string='Sale Order')
     
     def receive_patient(self) :
         for record in self.filtered(lambda r: r.state=='planned') :
@@ -181,13 +188,29 @@ class PlannerPlanner(models.Model) :
             self.filtered(lambda r: r.state=='planned').receive_patient()
         return res
     
+    def create_sale_order(self) :
+        to_order = self.filtered(lambda r: r.id and (not r.sale_id) and r.received and r.patient_id and r.procedure_id)
+        patients = to_order.mapped('patient_id')
+        for patient in patients :
+            records = to_order.filtered(lambda r: r.patient_id == patient)
+            sale_order = self.env['sale.order'].create({'partner_id': patient.id, 'user_id': self.env.uid, 'order_line': [(0,0,{'product_id': record.procedure_id.id}) for record in records]})
+            records.write({'sale_id': sale_order.id})
+    
     @api.depends('state')
     def _compute_state(self) :
         for record in self :
-            if record.state == 'received' and not record.received :
-                record.received = True
-            if record.state == 'attended' and not record.attended :
-                record.attended = True
+            if record.state == 'received' :
+                if not record.received :
+                    record.received = True
+            elif record.state == 'attended' :
+                if not record.attended :
+                    record.attended = True
+            else :
+                if record.received :
+                    record.received = False
+                if record.attended :
+                    record.attended = False
+        self.filtered(lambda r: r.received).create_sale_order()
     
     @api.depends('spot_id')
     def _compute_spot_id(self) :
