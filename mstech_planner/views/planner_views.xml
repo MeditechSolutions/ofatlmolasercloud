@@ -153,10 +153,10 @@
                     <sheet>
                         <group>
                             <group>
-                                <field name="patient_id" widget="res_partner_many2one"/>
+                                <field name="patient_id" widget="res_partner_many2one" options="{'no_create':true}"/>
                                 <field name="professional_id" options="{'no_create':true}"/>
-                                <field name="procedure_ids" widget="many2many_tags" invisible="1"/>
-                                <field name="spot_id" options="{'no_create':true, 'no_open':true}"/>
+                                <field name="procedure_ids" widget="many2many_tags" invisible="1" options="{'no_create':true, 'no_open':true}"/>
+                                <field name="spot_id" options="{'no_create':true, 'no_open':true}" domain="[('professional_id','=',professional_id)]"/>
                                 <field name="date" invisible="1"/>
                                 <field name="start" invisible="1"/>
                                 <field name="end" invisible="1"/>

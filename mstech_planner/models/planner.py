@@ -142,11 +142,12 @@ class PlannerPlanner(models.Model) :
     name = fields.Char(string='Planner', readonly=True, copy=False, default='/')
     state = fields.Selection(string='Status', required=True, readonly=True, copy=False, tracking=True, default='planned',
                              selection=[('planned','Planned'),('received','Received'),('attended','Attended'),('cancel','Cancelled')])
-    received = fields.Boolean(string='Received')
-    patient_id = fields.Many2one(comodel_name='res.partner', string='Patient')
-    professional_id = fields.Many2one(comodel_name='planner.professional', string='Professional')
+    received = fields.Boolean(string='Received', compute='_compute_state', store=True, readonly=False)
+    attended = fields.Boolean(string='Attended', compute='_compute_state', store=True)
+    patient_id = fields.Many2one(comodel_name='res.partner', string='Patient', required=True)
+    professional_id = fields.Many2one(comodel_name='planner.professional', string='Professional', required=True)
     procedure_ids = fields.Many2many(comodel_name='product.product', string='Procedures', compute='_compute_professional_id', store=True)
-    procedure_id = fields.Many2one(comodel_name='product.product', string='Procedure')
+    procedure_id = fields.Many2one(comodel_name='product.product', string='Procedure', required=True)
     spot_id = fields.Many2one(comodel_name='planner.spot', string='Spot', domain=[('available_spots','>',0)])
     date = fields.Date(string='Date', compute='_compute_spot_id', store=True, readonly=True)
     start = fields.Datetime(string='Start', compute='_compute_spot_id', store=True, readonly=True)
@@ -155,8 +156,6 @@ class PlannerPlanner(models.Model) :
     def receive_patient(self) :
         for record in self.filtered(lambda r: r.state=='planned') :
             record.state = 'received'
-            if not record.received :
-                record.received = True
     
     def mark_attended(self) :
         for record in self.filtered(lambda r: r.state=='received') :
@@ -167,15 +166,24 @@ class PlannerPlanner(models.Model) :
             record.state = 'cancel'
     
     def unlink(self) :
-        self.mark_cancel()
-        #res = super(PlannerPlanner, self).unlink(values)
-        return True
+        attended = self.filtered(lambda r: r.attended)
+        attended.mark_cancel()
+        res = super(PlannerPlanner, self - attended).unlink()
+        return res
     
     def write(self, values) :
         res = super(PlannerPlanner, self).write(values)
         if values.get('received') :
             self.filtered(lambda r: r.state=='planned').receive_patient()
         return res
+    
+    @api.depends('state')
+    def _compute_state(self) :
+        for record in self :
+            if record.state == 'received' and not record.received :
+                record.received = True
+            if record.state == 'attended' and not record.attended :
+                record.attended = True
     
     @api.depends('spot_id')
     def _compute_spot_id(self) :
