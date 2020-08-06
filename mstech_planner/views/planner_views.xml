@@ -172,6 +172,15 @@
 			</field>
 		</record>
         
+        <record model="ir.ui.view" id="view_planner_planner_calendar">
+			<field name="name">planner.planner.calendar</field>
+			<field name="model">planner.planner</field>
+			<field name="type">calendar</field>
+			<field name="arch" type="xml">
+                <calendar string="Planner" date_start="start" date_stop="end" color="professional_id" mode="week" quick_add="false"></calendar>
+			</field>
+		</record>
+        
         <record id="action_planner_spot" model="ir.actions.act_window">
             <field name="name">Spot</field>
             <field name="res_model">planner.spot</field>
@@ -209,7 +218,7 @@
             <field name="res_model">planner.planner</field>
             <field name="domain">[]</field>
             <field name="context">{}</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">calendar,tree,form</field>
         </record>
         
         <menuitem name="Planner"

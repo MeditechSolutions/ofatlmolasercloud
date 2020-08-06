@@ -166,6 +166,11 @@ class PlannerPlanner(models.Model) :
         for record in self.filtered(lambda r: r.state not in ['attended','cancel']) :
             record.state = 'cancel'
     
+    def unlink(self) :
+        self.mark_cancel()
+        #res = super(PlannerPlanner, self).unlink(values)
+        return True
+    
     def write(self, values) :
         res = super(PlannerPlanner, self).write(values)
         if values.get('received') :
