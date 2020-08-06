@@ -154,11 +154,11 @@ class PlannerPlanner(models.Model) :
     professional_id = fields.Many2one(comodel_name='planner.professional', string='Professional', required=True)
     procedure_ids = fields.Many2many(comodel_name='product.product', string='Procedures', compute='_compute_professional_id', store=True)
     procedure_id = fields.Many2one(comodel_name='product.product', string='Procedure', required=True)
-    spot_id = fields.Many2one(comodel_name='planner.spot', string='Spot', domain=[('available_spots','>',0)])
+    spot_id = fields.Many2one(comodel_name='planner.spot', string='Spot', domain=[('available_spots','>',0)], tracking=True)
     date = fields.Date(string='Date', compute='_compute_spot_id', store=True, readonly=True)
     start = fields.Datetime(string='Start', compute='_compute_spot_id', store=True, readonly=True)
     end = fields.Datetime(string='End', compute='_compute_spot_id', store=True, readonly=True)
-    sale_id = fields.Many2one(comodel_name='sale.order', string='Sale Order')
+    sale_id = fields.Many2one(comodel_name='sale.order', string='Sale Order', tracking=True)
     
     def create_sale_order(self) :
         to_order = self.filtered(lambda r: r.id and (not r.sale_id) and r.received and r.patient_id and r.procedure_id)
