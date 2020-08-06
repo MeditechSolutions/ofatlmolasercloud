@@ -166,9 +166,13 @@ class PlannerPlanner(models.Model) :
             record.state = 'cancel'
     
     def unlink(self) :
-        attended = self.filtered(lambda r: r.attended)
-        attended.mark_cancel()
-        res = super(PlannerPlanner, self - attended).unlink()
+        res = True
+        if self.env.context.get('force_unlink') :
+            res = super(PlannerPlanner, self).unlink()
+        else :
+            attended = self.filtered(lambda r: r.attended)
+            attended.mark_cancel()
+            res = super(PlannerPlanner, self - attended).unlink()
         return res
     
     def write(self, values) :
@@ -196,6 +200,14 @@ class PlannerPlanner(models.Model) :
     def _compute_professional_id(self) :
         for record in self :
             record.procedure_ids = record.professional_id.procedure_ids
+    
+    @api.onchange('professional_id')
+    def _onchange_professional_id(self) :
+        if not self.professional_id :
+            if self.spot_id :
+                self.spot_id = False
+            if self.procedure_id :
+                self.procedure_id = False
     
     @api.depends('patient_id', 'professional_id', 'date', 'start', 'end')
     def name_get(self) :

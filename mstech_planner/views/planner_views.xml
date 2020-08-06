@@ -153,14 +153,14 @@
                     <sheet>
                         <group>
                             <group>
-                                <field name="patient_id" widget="res_partner_many2one" options="{'no_create':true}"/>
-                                <field name="professional_id" options="{'no_create':true}"/>
+                                <field name="patient_id" widget="res_partner_many2one" options="{'no_create':true}" attrs="{'readonly': ['|', ('received','!=',False), ('attended','!=',False)]}"/>
+                                <field name="professional_id" options="{'no_create':true}" attrs="{'readonly': ['|', ('received','!=',False), ('attended','!=',False)]}"/>
                                 <field name="procedure_ids" widget="many2many_tags" invisible="1" options="{'no_create':true, 'no_open':true}"/>
-                                <field name="spot_id" options="{'no_create':true, 'no_open':true}" domain="[('professional_id','=',professional_id)]"/>
+                                <field name="spot_id" options="{'no_create':true, 'no_open':true}" domain="[('available_spots','>',0), ('professional_id','=',professional_id)]" attrs="{'invisible': [('professional_id','=',False)], 'readonly': ['|', ('received','!=',False), ('attended','!=',False)]}"/>
                                 <field name="date" invisible="1"/>
                                 <field name="start" invisible="1"/>
                                 <field name="end" invisible="1"/>
-                                <field name="procedure_id" options="{'no_create':true, 'no_open':true}" domain="[('id','in',procedure_ids)]"/>
+                                <field name="procedure_id" options="{'no_create':true, 'no_open':true}" domain="[('id','in',procedure_ids)]" attrs="{'invisible': [('professional_id','=',False)], 'readonly': ['|', ('received','!=',False), ('attended','!=',False)]}"/>
                             </group>
                             <group>
                                 <field name="name" invisible="1"/>
