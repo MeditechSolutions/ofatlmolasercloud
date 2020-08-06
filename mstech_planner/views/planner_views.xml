@@ -198,7 +198,7 @@
             <field name="binding_view_types">list</field>
             <field name="state">code</field>
             <field name="code">
-(record or records or model).create_sale_order()
+(records or record or model).create_sale_order()
             </field>
         </record>
         
