@@ -98,13 +98,14 @@ class PlannerProfessionalAvailability(models.Model) :
         current_tz = self.env.user.tz or self._get_default_timezone()
         current_offset = datetime.datetime.now(pytz.timezone(current_tz)).utcoffset()
         aware_now = fields.Datetime.now().astimezone(pytz.timezone(current_tz))
-        aware_today = aware_now.date()
+        #aware_today = aware_now.date()
         spot = self.env['planner.spot'].sudo()
         raise UserError(str(availability_record)+'\n'+str(aware_now.isoweekday()))
         for record in (availability_record or self.sudo().search([('day','=',str(aware_now.isoweekday()))])) :
             duration = record.duration
             duration_offset = datetime.timedelta(hours=duration)
             spots = record.spots
+            aware_today = aware_now.date() + datetime.timedelta(days=int(record.days)-aware_now.isoweekday())
             for i in range(5) :
                 actual = aware_today + datetime.timedelta(days=i)
                 start = record.start
