@@ -28,6 +28,7 @@ class PlannerSpot(models.Model) :
         return DEFAULT_TIMEZONE
     
     name = fields.Char(string='Planner', readonly=True, copy=False, default='/')
+    active = fields.Char(string='Active', default=True)
     professional_id = fields.Many2one(comodel_name='planner.professional', string='Professional')
     date = fields.Date(string='Date')
     start = fields.Datetime(string='Start')
@@ -123,7 +124,7 @@ class PlannerProfessionalAvailability(models.Model) :
                                                                 'end': str(unaware_start + duration),
                                                                 'spots': spots})
     
-    @api.multi
+    @api.model
     def create(self, values) :
         res = super(PlannerProfessionalAvailability, self).create(values)
         self.spot_creation(availability_record=res)
