@@ -141,6 +141,16 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: mstech_planner
+#: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_planner_form
+msgid "Mark as Attended"
+msgstr ""
+
+#. module: mstech_planner
+#: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_planner_form
+msgid "Mark as Cancelled"
+msgstr ""
+
+#. module: mstech_planner
 #: model:ir.model.fields.selection,name:mstech_planner.selection__planner_professional_availability__day__1
 msgid "Monday"
 msgstr ""
@@ -195,6 +205,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_professional_form
 #: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_professional_tree
 msgid "Professional"
+msgstr ""
+
+#. module: mstech_planner
+#: model_terms:ir.ui.view,arch_db:mstech_planner.view_planner_planner_form
+msgid "Receive"
 msgstr ""
 
 #. module: mstech_planner
