@@ -139,6 +139,11 @@ class SaleOrder(models.Model) :
     
     planner_ids = fields.One2many(comodel_name='planner.planner', inverse_name='sale_id', string='Planner')
 
+class SaleOrderLine(models.Model) :
+    _inherit = 'sale.order.line'
+    
+    planner_id = fields.Many2one(comodel_name='planner.planner', string='Planner')
+
 class PlannerPlanner(models.Model) :
     _name = 'planner.planner'
     _description = 'Planner'
@@ -162,6 +167,7 @@ class PlannerPlanner(models.Model) :
     start = fields.Datetime(string='Start', compute='_compute_spot_id', store=True, readonly=True)
     end = fields.Datetime(string='End', compute='_compute_spot_id', store=True, readonly=True)
     sale_id = fields.Many2one(comodel_name='sale.order', string='Sale Order', tracking=True)
+    sale_line_id = fields.Many2one(comodel_name='sale.order.line', string='Sale Order Line', tracking=True)
     
     def create_sale_order(self) :
         to_order = self.filtered(lambda r: r.id and (not r.sale_id) and r.received and r.patient_id and r.procedure_id)
@@ -170,6 +176,11 @@ class PlannerPlanner(models.Model) :
             records = to_order.filtered(lambda r: r.patient_id == patient)
             sale_order = self.env['sale.order'].create({'partner_id': patient.id, 'user_id': self.env.uid, 'order_line': [(0,0,{'product_id': record.procedure_id.id}) for record in records]})
             records.write({'sale_id': sale_order.id})
+            for record in records :
+                sale_order.write({'order_line': [(0,0,{'product_id': record.procedure_id.id})]})
+                sale_order_line = sale_order.order_line.filtered(lambda r: not r.planner_id)[0]
+                record.write({'sale_line_id': sale_order_line.id})
+                sale_order_line.write({'planner_id': record.id})
     
     def receive_patient(self) :
         #for record in self.filtered(lambda r: r.state=='planned') :
