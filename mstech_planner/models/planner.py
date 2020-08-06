@@ -105,7 +105,7 @@ class PlannerProfessionalAvailability(models.Model) :
             duration = record.duration
             duration_offset = datetime.timedelta(hours=duration)
             spots = record.spots
-            aware_today = aware_now.date() + datetime.timedelta(days=int(record.days)-aware_now.isoweekday())
+            aware_today = aware_now.date() + datetime.timedelta(days=int(record.day)-aware_now.isoweekday())
             for i in range(5) :
                 actual = aware_today + datetime.timedelta(days=i)
                 start = record.start
