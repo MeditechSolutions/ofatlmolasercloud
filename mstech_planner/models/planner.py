@@ -106,7 +106,7 @@ class PlannerProfessionalAvailability(models.Model) :
             spots = record.spots
             aware_today = aware_now.date() + datetime.timedelta(days=int(record.day)-aware_now.date().isoweekday())
             for i in range(5) :
-                actual = aware_today + datetime.timedelta(days=i)
+                actual = aware_today + datetime.timedelta(weeks=i)
                 start = record.start
                 end = record.end
                 unaware_starts = []
