@@ -22,6 +22,7 @@ class PlannerProfessional(models.Model) :
 class PlannerSpot(models.Model) :
     _name = 'planner.spot'
     _description = 'Spot'
+    _order = 'professional_id asc, start asc, end asc'
     
     def _get_default_timezone(self) :
         #datetime.datetime.now(pytz.timezone('America/Lima')).utcoffset()
@@ -62,6 +63,7 @@ class PlannerSpot(models.Model) :
 class PlannerProfessionalAvailability(models.Model) :
     _name = 'planner.professional.availability'
     _description = 'Availability'
+    _order = 'professional_id asc, day asc'
     
     def _get_default_timezone(self) :
         return DEFAULT_TIMEZONE
