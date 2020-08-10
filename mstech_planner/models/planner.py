@@ -35,7 +35,7 @@ class PlannerSpot(models.Model) :
     start = fields.Datetime(string='Start', required=True)
     end = fields.Datetime(string='End', required=True)
     spots = fields.Integer(string='Spots', default=1, required=True)
-    planner_ids = fields.One2many(comodel_name='planner.planner', inverse_name='spot_id', string='Planners')
+    planner_ids = fields.One2many(comodel_name='planner.planner', inverse_name='spot_id', string='Planners', domain=[('state','!=','cancel')])
     available_spots = fields.Integer(string='Available Spots', compute='_compute_available_spots', store=True)
     
     @api.depends('spots', 'planner_ids')
